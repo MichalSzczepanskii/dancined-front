@@ -7,7 +7,7 @@ body {
 }
 
 .btn {
-  @apply py-2 px-6 rounded;
+  @apply py-2 px-6 rounded-lg;
 }
 .btn-primary {
   @apply bg-main text-white hover:bg-main-dark
