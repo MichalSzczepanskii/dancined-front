@@ -3,10 +3,16 @@
   display: flex;
   flex-direction: row;
   min-height: 100vh;
+  > div:nth-child(1) {
+    flex: 1;
+  }
+  > div:nth-child(2) {
+    width: 63%
+  }
   .container {
     width: 50%;
     max-width: 24rem;
-    min-width: 20rem;
+    min-width: 22rem;
     form h1 {
       letter-spacing: 0.14rem;
     }
@@ -28,7 +34,7 @@
       display: block;
     }
     input:not([type='submit']) {
-      @apply border border-gray-500 w-full py-2 px-4 rounded;
+      @apply border border-gray-400 w-full py-2 px-4 rounded-xl drop-shadow-md
     }
   }
 }
