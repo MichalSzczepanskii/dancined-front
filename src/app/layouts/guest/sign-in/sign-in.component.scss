@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap');
+:host {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  .container {
+    width: 50%;
+    max-width: 24rem;
+    min-width: 20rem;
+    form h1 {
+      letter-spacing: 0.14rem;
+    }
+  }
+  .logo {
+    font-family: 'Nunito';
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+  }
+
+  .right-pane {
+    background-image: url('/assets/img/sign-in.jpg');
+    background-size: cover;
+    background-position: center center;
+  }
+  .input-field {
+    @apply py-1.5 flex flex-col gap-y-2 text-gray-800;
+    label {
+      display: block;
+    }
+    input:not([type='submit']) {
+      @apply border border-gray-500 w-full py-2 px-4 rounded;
+    }
+  }
+}

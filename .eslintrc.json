@@ -44,7 +44,10 @@
       "extends": [
         "plugin:@angular-eslint/template/recommended"
       ],
-      "rules": {}
+      "rules": {
+        "space-before-blocks": "error",
+        "space-infix-ops": "error"
+      }
     }
   ]
 }
