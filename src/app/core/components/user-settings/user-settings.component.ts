@@ -5,7 +5,7 @@ import {MenuItem} from 'primeng/api';
   selector: 'app-user-settings',
   template: `
     <div class="flex justify-between items-center ">
-      <div class="username">
+      <div class="username hidden-text">
         Username
       </div>
       <div><i class="pi pi-cog text-lg icon" (click)="menu.toggle($event)"></i></div>

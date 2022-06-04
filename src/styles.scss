@@ -12,3 +12,12 @@ body {
 .btn-primary {
   @apply bg-main text-white hover:bg-main-dark
 }
+.sidebar-hide {
+  position: static;
+  .hidden-text {
+    display: none;
+  }
+  .centered-margin {
+    margin: 0 auto;
+  }
+}
