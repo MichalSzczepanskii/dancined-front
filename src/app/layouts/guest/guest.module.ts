@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {RouterModule} from '@angular/router';
+import { GuestComponent } from './guest.component';
+import {GuestRoutingModule} from './guest-routing.module';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    GuestComponent
+  ],
   imports: [
     CommonModule,
-    RouterModule.forChild([
-      {path: '', loadChildren: () => import('./sign-in/sign-in.module').then(m => m.SignInModule)}
-    ])
+    GuestRoutingModule
   ]
 })
 export class GuestModule { }
