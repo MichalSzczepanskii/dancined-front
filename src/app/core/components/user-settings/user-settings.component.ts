@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
+import {AuthService} from '../../services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-user-settings',
@@ -26,13 +28,19 @@ export class UserSettingsComponent implements OnInit {
   items: MenuItem[] = [
     {
       label: 'Wyloguj',
-      icon: 'pi pi-sign-out'
+      icon: 'pi pi-sign-out',
+      command: () => this.logout(),
     }
   ]
 
-  constructor() { }
+  constructor(private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 }

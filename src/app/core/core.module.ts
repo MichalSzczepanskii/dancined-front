@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 import {MenuModule} from 'primeng/menu';
+import {HttpClient} from '@angular/common/http';
 
 
 
