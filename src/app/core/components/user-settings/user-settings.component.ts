@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
   template: `
     <div class="flex justify-between items-center ">
       <div class="username hidden-text">
-        Username
+          {{username}}
       </div>
       <div><i class="pi pi-cog text-lg icon" (click)="menu.toggle($event)"></i></div>
     </div>
@@ -25,6 +25,7 @@ import {Router} from '@angular/router';
   ]
 })
 export class UserSettingsComponent implements OnInit {
+  username: string = '';
   items: MenuItem[] = [
     {
       label: 'Wyloguj',
@@ -37,6 +38,7 @@ export class UserSettingsComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
+    this.username = this.authService.getUserFirstname();
   }
 
   logout() {

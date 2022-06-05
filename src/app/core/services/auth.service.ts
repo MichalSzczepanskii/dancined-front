@@ -6,6 +6,8 @@ import {Observable, tap} from 'rxjs';
 import {AuthResultModel} from '../models/auth-result.model';
 import {SessionEnum} from '../constants/session.enum';
 import * as moment from 'moment';
+import jwt_decode from 'jwt-decode';
+import {TokenPayloadModel} from '../models/token-payload.model';
 
 @Injectable({
   providedIn: 'root'
@@ -29,14 +31,17 @@ export class AuthService {
 
   private setSession(authResult: AuthResultModel): void {
     const expiresAt = moment().add(authResult.expires_in, 'second');
+    const decodedToken = jwt_decode(authResult.access_token) as TokenPayloadModel;
     localStorage.setItem(SessionEnum.TOKEN, authResult.access_token);
     localStorage.setItem(SessionEnum.EXPIRES_AT, JSON.stringify(expiresAt.valueOf()));
+    localStorage.setItem(SessionEnum.FIRST_NAME, decodedToken.first_name);
   }
 
   logout(): void {
     this.http.post(`${this.BASE_URL}/logout`, null);
     localStorage.removeItem(SessionEnum.TOKEN);
     localStorage.removeItem(SessionEnum.EXPIRES_AT);
+    localStorage.removeItem(SessionEnum.FIRST_NAME);
   }
 
   isLoggedIn(): boolean {
@@ -49,5 +54,9 @@ export class AuthService {
 
   getExpiration(): moment.Moment {
     return moment(JSON.parse(localStorage.getItem(SessionEnum.EXPIRES_AT) || '{}'));
+  }
+
+  getUserFirstname(): string {
+    return localStorage.getItem(SessionEnum.FIRST_NAME) || '';
   }
 }
