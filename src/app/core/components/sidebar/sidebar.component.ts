@@ -1,6 +1,7 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {NAVIGATION_ITEMS} from '../../constants/navigation-items.constant';
-import {Router} from '@angular/router';
+import {NavigationEnd, Router} from '@angular/router';
+import {filter} from 'rxjs';
 
 @Component({
   selector: 'app-sidebar',
@@ -16,11 +17,20 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.hide = window.innerWidth < this.HIDE_WIDTH;
-    this.title =
-      this.navigationItems
-        .filter((group) =>
-          group.items.filter(item =>
-            item.route === this.router.url))[0].items[0].title;
+    this.title = 'Dancined'.toUpperCase();
+    // this.router.events.pipe(
+    //   filter(event => event instanceof NavigationEnd)
+    // ).subscribe((val) => {
+    //   console.log(this.navigationItems
+    //     .filter((group) =>
+    //       group.items.some(item =>
+    //         item.route === (val as NavigationEnd).url)))
+    //   this.title =
+    //     this.navigationItems
+    //       .filter((group) =>
+    //         group.items.some(item =>
+    //           item.route === (val as NavigationEnd).url))[0].items[0].title;
+    // })
   }
 
   @HostListener('window:resize', ['$event'])

@@ -11,4 +11,14 @@ export const NAVIGATION_ITEMS: NavigationItemsGroupModel[] = [
       }
     ]
   },
+  {
+    name: 'Słowniki',
+    items: [
+      {
+        title: 'Lokalizacje',
+        route: '/locations',
+        icon: 'pi pi-compass'
+      }
+    ]
+  }
 ]

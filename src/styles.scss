@@ -21,3 +21,10 @@ body {
     margin: 0 auto;
   }
 }
+
+.page-header {
+  @apply flex justify-between items-center mb-5;
+  .page-title {
+    @apply text-2xl;
+  }
+}

@@ -5,7 +5,8 @@ import {AuthComponent} from './auth.component';
 const routes: Routes = [
   {
     path: '', component: AuthComponent, children: [
-      {path: '', loadChildren: () => import('../../pages/dashboard/dashboard.module').then(m => m.DashboardModule)}
+      {path: '', loadChildren: () => import('../../pages/dashboard/dashboard.module').then(m => m.DashboardModule)},
+      {path: 'locations', loadChildren: () => import('../../pages/locations/locations.module').then(m => m.LocationsModule)}
     ]
   }
 ];

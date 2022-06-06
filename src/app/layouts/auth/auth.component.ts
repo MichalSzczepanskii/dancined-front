@@ -3,9 +3,14 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-auth',
   template: `
-    <div class="flex">
+    <div class="flex ">
       <app-sidebar></app-sidebar>
-      <router-outlet></router-outlet>
+      <div class="w-full max-h-screen overflow-y-auto">
+        <app-navbar></app-navbar>
+        <div class="px-8 py-5">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
     </div>
   `,
   styles: [
