@@ -29,12 +29,5 @@ export class LocationsComponent extends TableIndexComponent<LocationModel> imple
     ]
   }
 
-  openAddForm() {
-    this.dialogService.open(AddLocationComponent, {
-      header: 'Dodaj lokalizacje',
-      width: '35rem'
-    })
-  }
-
 
 }

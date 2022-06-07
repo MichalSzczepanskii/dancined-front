@@ -1,5 +1,5 @@
 <div class="page-header justify-self-start bg-main-light text-white py-10 px-5">
-  <h1 class="page-title">{{this.editEntity ? 'Edytuj' : 'Dodaj'}} lokalizację</h1>
+  <h1 class="page-title">{{this.editEntity ? 'Edytuj' : 'Dodaj'}} typ zajęć</h1>
 </div>
 <div class="px-3 mt-10">
   <div class="px-5 h-full flex-col items-center">
@@ -16,13 +16,6 @@
         <textarea id="description" formControlName="description"></textarea>
         <div class="input-error" *ngIf="displayError('description')">
           {{fc.description | inputError }}
-        </div>
-      </div>
-      <div class="input-field">
-        <label for="address">Adres:</label>
-        <input type="text" id="address" class="input-field" formControlName="address">
-        <div class="input-error" *ngIf="displayError('address')">
-          {{fc.address | inputError }}
         </div>
       </div>
       <div class="flex justify-end mt-5">

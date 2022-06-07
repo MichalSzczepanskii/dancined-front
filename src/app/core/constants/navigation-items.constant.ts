@@ -18,6 +18,11 @@ export const NAVIGATION_ITEMS: NavigationItemsGroupModel[] = [
         title: 'Lokalizacje',
         route: '/locations',
         icon: 'pi pi-compass'
+      },
+      {
+        title: 'Typy zajęć',
+        route: '/lesson-types',
+        icon: 'pi pi-palette'
       }
     ]
   }
