@@ -1,16 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Source+Sans+Pro:wght@400;500;600;700&display=swap');
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .btn {
   @apply py-2 px-6 rounded-lg;
 }
 .btn-primary {
-  @apply bg-main text-white hover:bg-main-dark
+  @apply text-white hover:bg-second-dark border border-transparent bg-second;
+}
+.btn-outline {
+  @apply border border-second-light text-black hover:bg-main-lighter;
+  &:hover {
+    @apply bg-second-light text-white
+  }
 }
 .sidebar-hide {
   position: static;
@@ -27,4 +33,20 @@ body {
   .page-title {
     @apply text-2xl;
   }
+}
+.input-field {
+  @apply py-1.5 flex flex-col gap-y-2 text-gray-800;
+  label {
+    display: block;
+  }
+
+  input:not([type='submit']), textarea {
+    @apply border border-gray-400 py-2 px-4 rounded-xl drop-shadow-md
+  }
+  .input-error {
+    @apply text-sm text-red-800;
+  }
+}
+.p-sidebar .p-sidebar-content, .p-sidebar .p-sidebar-header {
+  padding: 0;
 }

@@ -9,6 +9,7 @@ import {ToastModule} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
 import {AuthInterceptor} from './core/interceptors/auth.interceptor';
 import {FormBuilder} from '@angular/forms';
+import {DialogService} from 'primeng/dynamicdialog';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {FormBuilder} from '@angular/forms';
   providers: [
     MessageService,
     FormBuilder,
+    DialogService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

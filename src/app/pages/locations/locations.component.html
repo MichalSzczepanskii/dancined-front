@@ -1,7 +1,7 @@
 <div>
   <div class="page-header">
     <h1 class="page-title">{{title}}</h1>
-    <button class="px-4 py-2 rounded-lg btn-primary flex items-center gap-x-2" [routerLink]="['/locations/add']">
+    <button class="px-4 py-2 rounded-lg btn-primary flex items-center gap-x-2" (click)="display = true">
       <i class="pi pi-plus"></i>Dodaj
     </button>
   </div>
@@ -37,9 +37,22 @@
           {{rowData[col.field]}}
         </td>
         <td>
-          <button><i class="pi pi-ellipsis-v"></i></button>
+          <button (click)="showOptionMenu(rowData, $event)"><i class="pi pi-ellipsis-v"></i></button>
         </td>
       </tr>
     </ng-template>
   </p-table>
 </div>
+<p-sidebar [(visible)]="display"
+           position="right"
+           [style]="{width: '33rem'}"
+           [showCloseIcon]="false"
+           (onHide)="editEntity = null">
+  <app-add-location
+    *ngIf="display"
+    (closeClicked)="display = $event"
+    (addedRecord)="loadData(lastLazyEvent)"
+    [editEntity]="editEntity"
+  ></app-add-location>
+</p-sidebar>
+<p-menu #menu [popup]="true" [model]="items"></p-menu>

@@ -11,11 +11,11 @@
   &:hover, &.nav-item-active {
     //background-color: rgba(255, 255, 255, 0.09);
     @apply bg-main;
-    filter: brightness(118%);
+    filter: brightness(115%);
     cursor: pointer;
   }
   &.nav-item-active {
-    filter: brightness(109%);
+    filter: brightness(110%);
     cursor: default;
   }
 }

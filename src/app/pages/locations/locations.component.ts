@@ -4,6 +4,8 @@ import {finalize} from 'rxjs';
 import {LazyLoadEvent} from 'primeng/api';
 import {TableIndexComponent} from '../../core/abstract-components/table-index.component';
 import {LocationModel} from '../../shared/models/location.model';
+import {DialogService} from 'primeng/dynamicdialog';
+import {AddLocationComponent} from './components/add-location/add-location.component';
 
 @Component({
   selector: 'app-locations',
@@ -12,7 +14,8 @@ import {LocationModel} from '../../shared/models/location.model';
 })
 export class LocationsComponent extends TableIndexComponent<LocationModel> implements OnInit {
 
-  constructor(private locationsService: LocationsService) {
+  constructor(private locationsService: LocationsService,
+              private dialogService: DialogService) {
     super(locationsService);
   }
 
@@ -24,6 +27,13 @@ export class LocationsComponent extends TableIndexComponent<LocationModel> imple
       { field: 'description', header: 'Opis'},
       { field: 'address', header: 'Adres'},
     ]
+  }
+
+  openAddForm() {
+    this.dialogService.open(AddLocationComponent, {
+      header: 'Dodaj lokalizacje',
+      width: '35rem'
+    })
   }
 
 

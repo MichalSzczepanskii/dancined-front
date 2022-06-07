@@ -19,4 +19,16 @@ export class CrudService<T> {
     return this.http.get<PaginationModel<T>>(`${this.BASE_URL}${this.name}`,
       {params: this.criteriaService.buildTableQuery(data?.lazyEvent)});
   }
+
+  add(data: T): Observable<any> {
+    return this.http.post<any>(`${this.BASE_URL}${this.name}`, data);
+  }
+
+  delete(id: number): Observable<any> {
+    return this.http.delete(`${this.BASE_URL}${this.name}/${id}`);
+  }
+
+  edit(id: number, newData: T): Observable<any> {
+    return this.http.put(`${this.BASE_URL}${this.name}/${id}`, newData);
+  }
 }

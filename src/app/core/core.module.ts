@@ -6,7 +6,7 @@ import {MenuModule} from 'primeng/menu';
 import {HttpClient} from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TableIndexComponent } from './abstract-components/table-index.component';
-import { TableStoreComponent } from './abstract-components/table-store.component';
+import { TableEntityFormComponent } from './abstract-components/table-entity-form.component';
 
 
 
@@ -16,12 +16,12 @@ import { TableStoreComponent } from './abstract-components/table-store.component
         UserSettingsComponent,
         NavbarComponent,
         TableIndexComponent,
-        TableStoreComponent
+        TableEntityFormComponent,
     ],
-    exports: [
-        SidebarComponent,
-        NavbarComponent
-    ],
+  exports: [
+    SidebarComponent,
+    NavbarComponent,
+  ],
   imports: [
     CommonModule,
     MenuModule,
