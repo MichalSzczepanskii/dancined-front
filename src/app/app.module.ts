@@ -3,32 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {ToastModule} from 'primeng/toast';
-import {MessageService} from 'primeng/api';
-import {AuthInterceptor} from './core/interceptors/auth.interceptor';
-import {FormBuilder} from '@angular/forms';
-import {DialogService} from 'primeng/dynamicdialog';
-import {TableModule} from 'primeng/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { FormBuilder } from '@angular/forms';
+import { DialogService } from 'primeng/dynamicdialog';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    ToastModule,
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, HttpClientModule, ToastModule],
   providers: [
     MessageService,
     FormBuilder,
     DialogService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

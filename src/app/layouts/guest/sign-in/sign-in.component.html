@@ -1,31 +1,31 @@
 <div class="flex justify-center items-center relative">
-  <div class="absolute top-0 left-0 py-4 px-5 logo text-4xl font-semibold text-main-dark cursor-default w-full">Dancined
+  <div class="absolute top-0 left-0 py-4 px-5 logo text-4xl font-semibold text-main-dark cursor-default w-full">
+    Dancined
     <div class="ml-6 border-b-4 border-main-dark h-4 w-1/2">&nbsp;</div>
   </div>
   <div class="container">
     <form [formGroup]="form" (submit)="onSubmit()">
       <div class="mb-5">
         <div class="text-center"><h1 class="text-5xl font-medium">Witaj spowrotem</h1></div>
-        <p class="mt-3 text-sm text-center text-gray-500">Wprowadź swoje dane logowania
+        <p class="mt-3 text-sm text-center text-gray-500">Wprowadź swoje dane logowania</p>
       </div>
+
       <div class="input-field">
         <label for="email">E-mail</label>
-        <input type="text" name="email" id="email" formControlName="email">
+        <input type="text" name="email" id="email" formControlName="email" />
         <div class="input-error" *ngIf="displayError('email')">
-          {{fc.email | inputError }}
+          {{ fc.email | inputError }}
         </div>
       </div>
       <div class="input-field">
         <label for="password">Hasło</label>
-        <input type="password" name="password" id="password" formControlName="password">
+        <input type="password" name="password" id="password" formControlName="password" />
         <div class="input-error" *ngIf="displayError('password')">
-          {{fc.password | inputError }}
+          {{ fc.password | inputError }}
         </div>
       </div>
       <div class="py-4 flex justify-between items-center">
-        <label class="text-gray-800">
-          <input type="checkbox" formControlName="rememberMe"/> Zapamiętaj mnie
-        </label>
+        <label class="text-gray-800"> <input type="checkbox" formControlName="rememberMe" /> Zapamiętaj mnie </label>
         <div><a href="#" class="text-gray-800 hover:text-main-light underline">Przypomnij hasło</a></div>
       </div>
       <div class="py-1 mb-2">

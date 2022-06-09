@@ -2,17 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-guest',
-  template: `
-    <router-outlet></router-outlet>
-  `,
-  styles: [
-  ]
+  template: ` <router-outlet></router-outlet> `,
+  styles: [],
 })
 export class GuestComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

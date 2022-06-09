@@ -1,18 +1,26 @@
 <div>
   <div class="page-header">
-    <h1 class="page-title">{{title}}</h1>
+    <h1 class="page-title">{{ title }}</h1>
     <button class="px-4 py-2 rounded-lg btn-primary flex items-center gap-x-2" (click)="display = true">
       <i class="pi pi-plus"></i>Dodaj
     </button>
   </div>
-  <p-table [value]="data" [columns]="cols" [loading]="loading" [lazy]="true" (onLazyLoad)="loadData($event)"
-           [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10, 25, 50, 100]" [totalRecords]="totalRecords"
-           [globalFilterFields]="['name', 'description', 'location.name']">
+  <p-table
+    [value]="data"
+    [columns]="cols"
+    [loading]="loading"
+    [lazy]="true"
+    (onLazyLoad)="loadData($event)"
+    [paginator]="true"
+    [rows]="10"
+    [rowsPerPageOptions]="[10, 25, 50, 100]"
+    [totalRecords]="totalRecords"
+    [globalFilterFields]="['name', 'description', 'location.name']">
     <ng-template pTemplate="header">
       <tr>
         <th *ngFor="let col of cols" [pSortableColumn]="col.field">
-          {{col.header}}
-          <p-sortIcon field="{{col.field}}"></p-sortIcon>
+          {{ col.header }}
+          <p-sortIcon field="{{ col.field }}"></p-sortIcon>
         </th>
         <th class="w-16"></th>
       </tr>
@@ -27,8 +35,7 @@
         <th>
           <p-columnFilter type="text" field="location.name" matchMode="contains" [showMenu]="false"></p-columnFilter>
         </th>
-        <th>
-        </th>
+        <th></th>
         <th></th>
       </tr>
     </ng-template>
@@ -37,12 +44,12 @@
       <tr>
         <td *ngFor="let col of columns">
           <ng-container *ngIf="col.field === 'location.name'">
-            {{rowData[col.field.split('.')[0]]?.name}}
+            {{ rowData[col.field.split('.')[0]]?.name }}
           </ng-container>
           <ng-container *ngIf="col.field === 'location.address'">
-            {{rowData[col.field.split('.')[0]]?.address}}
+            {{ rowData[col.field.split('.')[0]]?.address }}
           </ng-container>
-          {{rowData[col.field] ?? ''}}
+          {{ rowData[col.field] ?? '' }}
         </td>
         <td>
           <button (click)="showOptionMenu(rowData, $event)"><i class="pi pi-ellipsis-v"></i></button>
@@ -51,11 +58,12 @@
     </ng-template>
   </p-table>
 </div>
-<p-sidebar [(visible)]="display"
-           position="right"
-           [style]="{width: '33rem'}"
-           [showCloseIcon]="false"
-           (onHide)="editEntity = null">
+<p-sidebar
+  [(visible)]="display"
+  position="right"
+  [style]="{ width: '33rem' }"
+  [showCloseIcon]="false"
+  (onHide)="editEntity = null">
   <app-add-room
     *ngIf="display"
     (closeClicked)="display = $event"

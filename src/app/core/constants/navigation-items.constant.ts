@@ -1,5 +1,4 @@
-
-import {NavigationItemsGroupModel} from '../models/navigation-items-group.model';
+import { NavigationItemsGroupModel } from '../models/navigation-items-group.model';
 
 export const NAVIGATION_ITEMS: NavigationItemsGroupModel[] = [
   {
@@ -8,8 +7,8 @@ export const NAVIGATION_ITEMS: NavigationItemsGroupModel[] = [
         title: 'Dashboard',
         route: '',
         icon: 'pi pi-home',
-      }
-    ]
+      },
+    ],
   },
   {
     name: 'Słowniki',
@@ -17,18 +16,18 @@ export const NAVIGATION_ITEMS: NavigationItemsGroupModel[] = [
       {
         title: 'Lokalizacje',
         route: '/locations',
-        icon: 'pi pi-compass'
+        icon: 'pi pi-compass',
       },
       {
         title: 'Sale',
         route: '/rooms',
-        icon: 'pi pi-building'
+        icon: 'pi pi-building',
       },
       {
         title: 'Typy zajęć',
         route: '/lesson-types',
-        icon: 'pi pi-palette'
-      }
-    ]
-  }
-]
+        icon: 'pi pi-palette',
+      },
+    ],
+  },
+];

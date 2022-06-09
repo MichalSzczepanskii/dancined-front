@@ -1,19 +1,19 @@
-import {Component, HostListener, OnInit} from '@angular/core';
-import {NAVIGATION_ITEMS} from '../../constants/navigation-items.constant';
-import {NavigationEnd, Router} from '@angular/router';
-import {filter} from 'rxjs';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { NAVIGATION_ITEMS } from '../../constants/navigation-items.constant';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
   readonly HIDE_WIDTH = 1000;
   navigationItems = NAVIGATION_ITEMS;
   title = '';
   hide = false;
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.hide = window.innerWidth < this.HIDE_WIDTH;
@@ -37,5 +37,4 @@ export class SidebarComponent implements OnInit {
   onResize() {
     this.hide = window.innerWidth < this.HIDE_WIDTH;
   }
-
 }

@@ -1,4 +1,4 @@
 export interface TokenPayloadModel {
-  permissions: string[],
-  first_name: string,
+  permissions: string[];
+  first_name: string;
 }

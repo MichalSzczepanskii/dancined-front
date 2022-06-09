@@ -1,10 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {LazyLoadEvent, MenuItem} from 'primeng/api';
-import {finalize} from 'rxjs';
-import {CrudService} from '../services/crud.service';
-import {Menu} from 'primeng/menu';
-import {BaseEntityModel} from '../models/base-entity.model';
-import {Sidebar} from 'primeng/sidebar';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { LazyLoadEvent, MenuItem } from 'primeng/api';
+import { finalize } from 'rxjs';
+import { CrudService } from '../services/crud.service';
+import { Menu } from 'primeng/menu';
+import { BaseEntityModel } from '../models/base-entity.model';
+import { Sidebar } from 'primeng/sidebar';
 
 @Component({
   selector: 'app-table-index',
@@ -22,36 +22,34 @@ export class TableIndexComponent<T extends BaseEntityModel> {
   editEntity: T | null;
   @ViewChild('menu') menu: Menu;
 
-  constructor(private crudService: CrudService<T>) {
-  }
+  constructor(private crudService: CrudService<T>) {}
 
   loadData(event: LazyLoadEvent) {
     this.lastLazyEvent = event;
-    this.crudService.getAll({lazyEvent: event})
-      .pipe(
-        finalize(() => this.loading = false)
-      )
-      .subscribe((res) => {
-        console.log(res)
+    this.crudService
+      .getAll({ lazyEvent: event })
+      .pipe(finalize(() => (this.loading = false)))
+      .subscribe(res => {
+        console.log(res);
         this.data = res.data;
         this.totalRecords = res.meta.total;
-      })
+      });
   }
 
   deleteRow(id: number) {
     this.crudService.delete(id).subscribe({
-      next: (res) => {
-        console.log(res)
+      next: res => {
+        console.log(res);
         this.loadData(this.lastLazyEvent);
       },
-      error: (err) => {
+      error: err => {
         console.log(err);
-      }
-    })
+      },
+    });
   }
 
   showOptionMenu(data: T, event: Event) {
-    console.log('menu')
+    console.log('menu');
     this.items = [
       {
         label: 'Edytuj',
@@ -59,14 +57,16 @@ export class TableIndexComponent<T extends BaseEntityModel> {
         command: () => {
           this.editEntity = data;
           this.display = true;
-        }
+        },
       },
       {
         label: 'Usuń',
         icon: 'pi pi-trash',
-        command: () => { this.deleteRow(data.id) }
+        command: () => {
+          this.deleteRow(data.id);
+        },
       },
-    ]
+    ];
     this.menu.toggle(event);
   }
 }

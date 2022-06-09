@@ -1,18 +1,26 @@
 <div>
   <div class="page-header">
-    <h1 class="page-title">{{title}}</h1>
+    <h1 class="page-title">{{ title }}</h1>
     <button class="px-4 py-2 rounded-lg btn-primary flex items-center gap-x-2" (click)="display = true">
       <i class="pi pi-plus"></i>Dodaj
     </button>
   </div>
-  <p-table [value]="data" [columns]="cols" [loading]="loading" [lazy]="true" (onLazyLoad)="loadData($event)"
-           [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10, 25, 50, 100]" [totalRecords]="totalRecords"
-           [globalFilterFields]="['name', 'description', 'address']">
+  <p-table
+    [value]="data"
+    [columns]="cols"
+    [loading]="loading"
+    [lazy]="true"
+    (onLazyLoad)="loadData($event)"
+    [paginator]="true"
+    [rows]="10"
+    [rowsPerPageOptions]="[10, 25, 50, 100]"
+    [totalRecords]="totalRecords"
+    [globalFilterFields]="['name', 'description', 'address']">
     <ng-template pTemplate="header">
       <tr>
         <th *ngFor="let col of cols" [pSortableColumn]="col.field">
-          {{col.header}}
-          <p-sortIcon field="{{col.field}}"></p-sortIcon>
+          {{ col.header }}
+          <p-sortIcon field="{{ col.field }}"></p-sortIcon>
         </th>
         <th class="w-16"></th>
       </tr>
@@ -34,7 +42,7 @@
     <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr>
         <td *ngFor="let col of columns">
-          {{rowData[col.field]}}
+          {{ rowData[col.field] }}
         </td>
         <td>
           <button (click)="showOptionMenu(rowData, $event)"><i class="pi pi-ellipsis-v"></i></button>
@@ -43,16 +51,16 @@
     </ng-template>
   </p-table>
 </div>
-<p-sidebar [(visible)]="display"
-           position="right"
-           [style]="{width: '33rem'}"
-           [showCloseIcon]="false"
-           (onHide)="editEntity = null">
+<p-sidebar
+  [(visible)]="display"
+  position="right"
+  [style]="{ width: '33rem' }"
+  [showCloseIcon]="false"
+  (onHide)="editEntity = null">
   <app-add-location
     *ngIf="display"
     (closeClicked)="display = $event"
     (addedRecord)="loadData(lastLazyEvent)"
-    [editEntity]="editEntity"
-  ></app-add-location>
+    [editEntity]="editEntity"></app-add-location>
 </p-sidebar>
 <p-menu #menu [popup]="true" [model]="items"></p-menu>

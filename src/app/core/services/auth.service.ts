@@ -1,32 +1,30 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {LoginDataModel} from '../models/login-data.model';
-import {environment} from '../../../environments/environment';
-import {Observable, tap} from 'rxjs';
-import {AuthResultModel} from '../models/auth-result.model';
-import {SessionEnum} from '../constants/session.enum';
+import { HttpClient } from '@angular/common/http';
+import { LoginDataModel } from '../models/login-data.model';
+import { environment } from '../../../environments/environment';
+import { Observable, tap } from 'rxjs';
+import { AuthResultModel } from '../models/auth-result.model';
+import { SessionEnum } from '../constants/session.enum';
 import * as moment from 'moment';
 import jwt_decode from 'jwt-decode';
-import {TokenPayloadModel} from '../models/token-payload.model';
+import { TokenPayloadModel } from '../models/token-payload.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   readonly BASE_URL = environment.apiUrl + 'auth';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   login(credentials: LoginDataModel): Observable<any> {
-    return this.http.post(`${this.BASE_URL}/login`,
-      {
+    return this.http
+      .post(`${this.BASE_URL}/login`, {
         email: credentials.email,
         password: credentials.password,
-        remember_me: credentials.rememberMe
-      }
-    ).pipe(
-      tap(res => this.setSession(res as AuthResultModel))
-    );
+        remember_me: credentials.rememberMe,
+      })
+      .pipe(tap(res => this.setSession(res as AuthResultModel)));
   }
 
   private setSession(authResult: AuthResultModel): void {
@@ -49,7 +47,7 @@ export class AuthService {
   }
 
   isLoggedOut(): boolean {
-    return !this.isLoggedIn()
+    return !this.isLoggedIn();
   }
 
   getExpiration(): moment.Moment {

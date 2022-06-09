@@ -1,28 +1,27 @@
 <div class="page-header justify-self-start bg-main-light text-white py-10 px-5">
-  <h1 class="page-title">{{this.editEntity ? 'Edytuj' : 'Dodaj'}} sale</h1>
+  <h1 class="page-title">{{ this.editEntity ? 'Edytuj' : 'Dodaj' }} sale</h1>
 </div>
 <div class="px-3 mt-10">
   <div class="px-5 h-full flex-col items-center">
     <form [formGroup]="form" (submit)="submit()">
       <div class="input-field">
         <label for="name">Nazwa:</label>
-        <input type="text" id="name" class="input-field" formControlName="name">
+        <input type="text" id="name" class="input-field" formControlName="name" />
         <div class="input-error" *ngIf="displayError('name')">
-          {{fc.name | inputError }}
+          {{ fc.name | inputError }}
         </div>
       </div>
       <div class="input-field">
         <label for="description">Opis:</label>
         <textarea id="description" formControlName="description"></textarea>
         <div class="input-error" *ngIf="displayError('description')">
-          {{fc.description | inputError }}
+          {{ fc.description | inputError }}
         </div>
       </div>
       <div class="flex justify-end mt-5">
         <div class="flex gap-x-5">
-          <button class="btn btn-primary"
-                  [disabled]="form.invalid">
-            {{this.editEntity ? 'Edytuj' : 'Dodaj'}}
+          <button class="btn btn-primary" [disabled]="form.invalid">
+            {{ this.editEntity ? 'Edytuj' : 'Dodaj' }}
           </button>
           <button type="button" class="btn btn-outline" (click)="close()">Anuluj</button>
         </div>
