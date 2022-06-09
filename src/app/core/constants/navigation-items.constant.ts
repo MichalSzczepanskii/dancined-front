@@ -20,6 +20,11 @@ export const NAVIGATION_ITEMS: NavigationItemsGroupModel[] = [
         icon: 'pi pi-compass'
       },
       {
+        title: 'Sale',
+        route: '/rooms',
+        icon: 'pi pi-building'
+      },
+      {
         title: 'Typy zajęć',
         route: '/lesson-types',
         icon: 'pi pi-palette'

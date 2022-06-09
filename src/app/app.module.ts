@@ -10,17 +10,18 @@ import {MessageService} from 'primeng/api';
 import {AuthInterceptor} from './core/interceptors/auth.interceptor';
 import {FormBuilder} from '@angular/forms';
 import {DialogService} from 'primeng/dynamicdialog';
+import {TableModule} from 'primeng/table';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ToastModule
+    ToastModule,
   ],
   providers: [
     MessageService,
