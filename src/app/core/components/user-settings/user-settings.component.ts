@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   selector: 'app-user-settings',
   template: `
     <div class="flex justify-between items-center ">
-      <div class="username hidden-text">
+      <div class="username hidden-text cursor-pointer" [routerLink]="['/user']">
         {{ username }}
       </div>
       <div><i class="pi pi-cog text-lg icon" (click)="menu.toggle($event)"></i></div>
@@ -28,6 +28,11 @@ import { Router } from '@angular/router';
 export class UserSettingsComponent implements OnInit {
   username: string = '';
   items: MenuItem[] = [
+    {
+      label: 'Profil',
+      icon: 'pi pi-user',
+      routerLink: ['/user'],
+    },
     {
       label: 'Wyloguj',
       icon: 'pi pi-sign-out',

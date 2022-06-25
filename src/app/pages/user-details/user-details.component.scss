@@ -1,0 +1,7 @@
+.info-row {
+  display: flex;
+  @apply py-0.5;
+  .info-header{
+    @apply font-bold w-36
+  }
+}

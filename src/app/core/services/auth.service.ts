@@ -8,6 +8,7 @@ import { SessionEnum } from '../constants/session.enum';
 import * as moment from 'moment';
 import jwt_decode from 'jwt-decode';
 import { TokenPayloadModel } from '../models/token-payload.model';
+import { UserModel } from '../../shared/models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -56,5 +57,9 @@ export class AuthService {
 
   getUserFirstname(): string {
     return localStorage.getItem(SessionEnum.FIRST_NAME) || '';
+  }
+
+  me(): Observable<UserModel> {
+    return this.http.get<UserModel>(`${this.BASE_URL}/me`);
   }
 }
