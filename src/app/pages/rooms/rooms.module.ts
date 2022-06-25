@@ -4,10 +4,11 @@ import { RoomsComponent } from './rooms.component';
 import { AddRoomComponent } from './components/add-room/add-room.component';
 import { TableModule } from 'primeng/table';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { SidebarModule } from 'primeng/sidebar';
 import { MenuModule } from 'primeng/menu';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [RoomsComponent, AddRoomComponent],
@@ -19,6 +20,8 @@ import { MenuModule } from 'primeng/menu';
     SharedModule,
     SidebarModule,
     MenuModule,
+    DropdownModule,
+    FormsModule,
   ],
 })
 export class RoomsModule {}

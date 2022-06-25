@@ -15,9 +15,8 @@ export class CrudService<T> {
   constructor(private http: HttpClient, private criteriaService: CriteriaService) {}
 
   getAll(data?: any): Observable<PaginationModel<T>> {
-    return this.http.get<PaginationModel<T>>(`${this.BASE_URL}${this.name}`, {
-      params: this.criteriaService.buildTableQuery(data?.lazyEvent),
-    });
+    const stringifyParams = this.criteriaService.buildTableQuery(data?.lazyEvent);
+    return this.http.get<PaginationModel<T>>(`${this.BASE_URL}${this.name}?${stringifyParams}`);
   }
 
   add(data: T): Observable<any> {
@@ -30,5 +29,9 @@ export class CrudService<T> {
 
   edit(id: number, newData: T): Observable<any> {
     return this.http.put(`${this.BASE_URL}${this.name}/${id}`, newData);
+  }
+
+  getAllRaw(): Observable<T[]> {
+    return this.http.get<T[]>(`${this.BASE_URL}${this.name}/getAllRaw`);
   }
 }

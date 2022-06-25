@@ -15,10 +15,10 @@
     [rows]="10"
     [rowsPerPageOptions]="[10, 25, 50, 100]"
     [totalRecords]="totalRecords"
-    [globalFilterFields]="['name', 'description', 'location.name']">
+    [globalFilterFields]="['rooms.name', 'rooms.description', 'locations.id']">
     <ng-template pTemplate="header">
       <tr>
-        <th *ngFor="let col of cols" [pSortableColumn]="col.field">
+        <th *ngFor="let col of cols" [pSortableColumn]="col.sortColumn">
           {{ col.header }}
           <p-sortIcon field="{{ col.field }}"></p-sortIcon>
         </th>
@@ -27,13 +27,28 @@
       <tr>
         <th></th>
         <th>
-          <p-columnFilter type="text" field="name" matchMode="contains" [showMenu]="false"></p-columnFilter>
+          <p-columnFilter type="text" field="rooms.name" matchMode="contains" [showMenu]="false"></p-columnFilter>
         </th>
         <th>
-          <p-columnFilter type="text" field="description" matchMode="contains" [showMenu]="false"></p-columnFilter>
+          <p-columnFilter
+            type="text"
+            field="rooms.description"
+            matchMode="contains"
+            [showMenu]="false"></p-columnFilter>
         </th>
         <th>
-          <p-columnFilter type="text" field="location.name" matchMode="contains" [showMenu]="false"></p-columnFilter>
+          <p-columnFilter type="text" field="locations.id" matchMode="equals" [showMenu]="false">
+            <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+              <p-dropdown
+                [ngModel]="value"
+                [options]="locations"
+                (onChange)="filter($event.value)"
+                placeholder="Wszystkie"
+                optionLabel="name"
+                optionValue="id">
+              </p-dropdown>
+            </ng-template>
+          </p-columnFilter>
         </th>
         <th></th>
         <th></th>
