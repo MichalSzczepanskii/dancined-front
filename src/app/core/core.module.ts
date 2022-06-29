@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TableIndexComponent } from './abstract-components/table-index.component';
 import { TableEntityFormComponent } from './abstract-components/table-entity-form.component';
+import { NgxPermissionsModule } from 'ngx-permissions';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,6 @@ import { TableEntityFormComponent } from './abstract-components/table-entity-for
     TableEntityFormComponent,
   ],
   exports: [SidebarComponent, NavbarComponent],
-  imports: [CommonModule, MenuModule],
+  imports: [CommonModule, MenuModule, NgxPermissionsModule, SharedModule],
 })
 export class CoreModule {}

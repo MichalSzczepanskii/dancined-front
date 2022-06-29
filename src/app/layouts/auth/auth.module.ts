@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
 import { CoreModule } from '../../core/core.module';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 @NgModule({
   declarations: [AuthComponent],
-  imports: [CommonModule, AuthRoutingModule, CoreModule],
+  imports: [CommonModule, AuthRoutingModule, CoreModule, NgxPermissionsModule.forChild()],
 })
 export class AuthModule {}
