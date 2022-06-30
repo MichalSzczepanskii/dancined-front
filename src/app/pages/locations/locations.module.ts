@@ -10,6 +10,7 @@ import { CoreModule } from '../../core/core.module';
 import { SharedModule } from '../../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MenuModule } from 'primeng/menu';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 @NgModule({
   declarations: [LocationsComponent, AddLocationComponent],
@@ -26,6 +27,7 @@ import { MenuModule } from 'primeng/menu';
     SharedModule,
     ReactiveFormsModule,
     MenuModule,
+    NgxPermissionsModule,
   ],
 })
 export class LocationsModule {}

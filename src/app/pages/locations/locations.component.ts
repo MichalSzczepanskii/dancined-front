@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocationsService } from '../../shared/services/locations.service';
 import { TableIndexComponent } from '../../core/abstract-components/table-index.component';
 import { LocationModel } from '../../shared/models/location.model';
+import { LocationsPermissions } from '../../shared/constants/permissions/locations-permissions';
 
 @Component({
   selector: 'app-locations',
@@ -9,6 +10,8 @@ import { LocationModel } from '../../shared/models/location.model';
   styleUrls: ['./locations.component.scss'],
 })
 export class LocationsComponent extends TableIndexComponent<LocationModel> implements OnInit {
+  readonly locationsPermissions = LocationsPermissions;
+
   constructor(private locationsService: LocationsService) {
     super(locationsService);
   }
