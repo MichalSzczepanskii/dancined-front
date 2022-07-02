@@ -12,10 +12,10 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((err: HttpErrorResponse) => {
         console.log(err);
-        // if (err.status === 401 && !err.url?.includes('login')) {
-        //   this.authService.logout();
-        //   location.reload();
-        // }
+        if (err.status === 401 && !err.url?.includes('login')) {
+          this.authService.logout();
+          location.reload();
+        }
         if (err.status === 0 || String(err.status).startsWith('5'))
           this.messageService.add({ severity: 'error', summary: 'Błąd', detail: 'Błąd serwera' });
         const error = err.error.message || err.statusText;
