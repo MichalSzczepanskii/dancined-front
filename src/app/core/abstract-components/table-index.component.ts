@@ -5,6 +5,7 @@ import { CrudService } from '../services/crud.service';
 import { Menu } from 'primeng/menu';
 import { BaseEntityModel } from '../models/base-entity.model';
 import { Sidebar } from 'primeng/sidebar';
+import { NgxPermissionsService } from 'ngx-permissions';
 
 @Component({
   selector: 'app-table-index',
@@ -20,6 +21,8 @@ export class TableIndexComponent<T extends BaseEntityModel> {
   lastLazyEvent: LazyLoadEvent;
   items: MenuItem[];
   editEntity: T | null;
+  showEditMenuItem = true;
+  showDeleteMenuItem = true;
   @ViewChild('menu') menu: Menu;
 
   constructor(private crudService: CrudService<T>) {}
@@ -49,24 +52,24 @@ export class TableIndexComponent<T extends BaseEntityModel> {
   }
 
   showOptionMenu(data: T, event: Event) {
-    console.log('menu');
-    this.items = [
-      {
-        label: 'Edytuj',
-        icon: 'pi pi-pencil',
-        command: () => {
-          this.editEntity = data;
-          this.display = true;
-        },
+    const editItem = {
+      label: 'Edytuj',
+      icon: 'pi pi-pencil',
+      command: () => {
+        this.editEntity = data;
+        this.display = true;
       },
-      {
-        label: 'Usuń',
-        icon: 'pi pi-trash',
-        command: () => {
-          this.deleteRow(data.id);
-        },
+    };
+    const deleteItem = {
+      label: 'Usuń',
+      icon: 'pi pi-trash',
+      command: () => {
+        this.deleteRow(data.id);
       },
-    ];
+    };
+    this.items = [];
+    if (this.showEditMenuItem) this.items.push(editItem);
+    if (this.showDeleteMenuItem) this.items.push(deleteItem);
     this.menu.toggle(event);
   }
 }

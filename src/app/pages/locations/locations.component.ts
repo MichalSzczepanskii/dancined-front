@@ -3,6 +3,7 @@ import { LocationsService } from '../../shared/services/locations.service';
 import { TableIndexComponent } from '../../core/abstract-components/table-index.component';
 import { LocationModel } from '../../shared/models/location.model';
 import { LocationsPermissions } from '../../shared/constants/permissions/locations-permissions';
+import { NgxPermissionsService } from 'ngx-permissions';
 
 @Component({
   selector: 'app-locations',
@@ -12,7 +13,7 @@ import { LocationsPermissions } from '../../shared/constants/permissions/locatio
 export class LocationsComponent extends TableIndexComponent<LocationModel> implements OnInit {
   readonly locationsPermissions = LocationsPermissions;
 
-  constructor(private locationsService: LocationsService) {
+  constructor(private locationsService: LocationsService, private permissionsService: NgxPermissionsService) {
     super(locationsService);
   }
 
@@ -24,5 +25,7 @@ export class LocationsComponent extends TableIndexComponent<LocationModel> imple
       { field: 'description', header: 'Opis' },
       { field: 'address', header: 'Adres' },
     ];
+    this.showEditMenuItem = !!this.permissionsService.getPermission(LocationsPermissions.UPDATE);
+    this.showDeleteMenuItem = !!this.permissionsService.getPermission(LocationsPermissions.DELETE);
   }
 }
