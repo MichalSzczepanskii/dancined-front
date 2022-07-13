@@ -10,6 +10,7 @@ import jwt_decode from 'jwt-decode';
 import { TokenPayloadModel } from '../models/token-payload.model';
 import { UserModel } from '../../shared/models/user.model';
 import { NgxPermissionsService } from 'ngx-permissions';
+import { ParticipantModel } from '../../shared/models/participant.model';
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +36,7 @@ export class AuthService {
     this.permissionsService.loadPermissions(decodedToken.permissions);
     localStorage.setItem(SessionEnum.TOKEN, authResult.access_token);
     localStorage.setItem(SessionEnum.EXPIRES_AT, JSON.stringify(expiresAt.valueOf()));
-    localStorage.setItem(SessionEnum.FIRST_NAME, decodedToken.first_name);
+    localStorage.setItem(SessionEnum.NAME, decodedToken.name);
     localStorage.setItem(SessionEnum.PERMISSIONS, JSON.stringify(decodedToken.permissions));
   }
 
@@ -44,7 +45,7 @@ export class AuthService {
     this.permissionsService.flushPermissions();
     localStorage.removeItem(SessionEnum.TOKEN);
     localStorage.removeItem(SessionEnum.EXPIRES_AT);
-    localStorage.removeItem(SessionEnum.FIRST_NAME);
+    localStorage.removeItem(SessionEnum.NAME);
     localStorage.removeItem(SessionEnum.PERMISSIONS);
   }
 
@@ -60,11 +61,15 @@ export class AuthService {
     return moment(JSON.parse(localStorage.getItem(SessionEnum.EXPIRES_AT) || '{}'));
   }
 
-  getUserFirstname(): string {
-    return localStorage.getItem(SessionEnum.FIRST_NAME) || '';
+  getUserName(): string {
+    return localStorage.getItem(SessionEnum.NAME) || '';
   }
 
   me(): Observable<UserModel> {
     return this.http.get<UserModel>(`${this.BASE_URL}/me`);
+  }
+
+  getAllParticipants(): Observable<ParticipantModel[]> {
+    return this.http.get<ParticipantModel[]>(`${this.BASE_URL}/all-participants`);
   }
 }

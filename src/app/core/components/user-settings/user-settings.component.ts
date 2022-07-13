@@ -43,7 +43,7 @@ export class UserSettingsComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    this.username = this.authService.getUserFirstname();
+    this.username = this.authService.getUserName();
   }
 
   logout() {

@@ -4,6 +4,7 @@ import { UserDetailsComponent } from './user-details.component';
 import { RouterModule } from '@angular/router';
 import { SkeletonModule } from 'primeng/skeleton';
 import { CardModule } from 'primeng/card';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [UserDetailsComponent],
@@ -17,6 +18,7 @@ import { CardModule } from 'primeng/card';
     ]),
     SkeletonModule,
     CardModule,
+    TableModule,
   ],
 })
 export class UserDetailsModule {}
