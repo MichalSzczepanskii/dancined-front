@@ -2,6 +2,7 @@ import { NavigationItemsGroupModel } from '../models/navigation-items-group.mode
 import { LocationsPermissions } from '../../shared/constants/permissions/locations-permissions';
 import { RoomsPermissions } from '../../shared/constants/permissions/rooms-permissions';
 import { LessonTypesPermissions } from '../../shared/constants/permissions/lesson-types-permissions';
+import { ClientsPermissions } from '../../shared/constants/permissions/clients-permissions';
 
 export const NAVIGATION_ITEMS: NavigationItemsGroupModel[] = [
   {
@@ -10,6 +11,12 @@ export const NAVIGATION_ITEMS: NavigationItemsGroupModel[] = [
         title: 'Dashboard',
         route: '',
         icon: 'pi pi-home',
+      },
+      {
+        title: 'Klienci',
+        route: '/clients',
+        icon: 'pi pi-users',
+        permissions: ClientsPermissions.READ_ALL,
       },
     ],
   },

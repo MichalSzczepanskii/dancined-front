@@ -1,0 +1,84 @@
+<div>
+  <div class="page-header">
+    <h1 class="page-title">{{ title }}</h1>
+    <button
+      class="px-4 py-2 rounded-lg btn-primary flex items-center gap-x-2"
+      (click)="display = true"
+      *ngxPermissionsOnly="clientsPermissions.CREATE">
+      <i class="pi pi-plus"></i>Dodaj
+    </button>
+  </div>
+  <p-table
+    [value]="data"
+    [columns]="cols"
+    [loading]="loading"
+    [lazy]="true"
+    (onLazyLoad)="loadData($event)"
+    [paginator]="true"
+    [rows]="10"
+    [rowsPerPageOptions]="[10, 25, 50, 100]"
+    [totalRecords]="totalRecords"
+    [globalFilterFields]="['email', 'people.first_name', 'people.last_name', 'people.pesel', 'people.phone']">
+    <ng-template pTemplate="header">
+      <tr>
+        <th *ngFor="let col of cols" [pSortableColumn]="col.sortColumn">
+          {{ col.header }}
+          <p-sortIcon field="{{ col.field }}"></p-sortIcon>
+        </th>
+        <th class="w-16"></th>
+      </tr>
+      <tr>
+        <th></th>
+        <th>
+          <p-columnFilter type="text" field="email" matchMode="contains" [showMenu]="false"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="people.first_name"
+            matchMode="contains"
+            [showMenu]="false"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="people.last_name" matchMode="contains" [showMenu]="false"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="people.pesel" matchMode="contains" [showMenu]="false"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="people.phone" matchMode="contains" [showMenu]="false"></p-columnFilter>
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns">
+          <ng-container *ngFor="let field of relationFields">
+            <ng-container *ngIf="col.field === 'person.' + field">
+              {{ rowData[col.field.split('.')[0]][field] }}
+            </ng-container>
+          </ng-container>
+          {{ rowData[col.field] ?? '' }}
+        </td>
+        <td>
+          <button (click)="showOptionMenu(rowData, $event)"><i class="pi pi-ellipsis-v"></i></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-sidebar
+  [(visible)]="display"
+  position="right"
+  [style]="{ width: '33rem' }"
+  [showCloseIcon]="false"
+  (onHide)="editEntity = null">
+  <!--  <app-add-location-->
+  <!--    *ngIf="display"-->
+  <!--    (closeClicked)="display = $event"-->
+  <!--    (addedRecord)="loadData(lastLazyEvent)"-->
+  <!--    [editEntity]="editEntity"></app-add-location>-->
+</p-sidebar>
+<p-menu #menu [popup]="true" [model]="items"></p-menu>

@@ -5,6 +5,7 @@ import { NgxPermissionsGuard } from 'ngx-permissions';
 import { LocationsPermissions } from '../../shared/constants/permissions/locations-permissions';
 import { LessonTypesPermissions } from '../../shared/constants/permissions/lesson-types-permissions';
 import { RoomsPermissions } from '../../shared/constants/permissions/rooms-permissions';
+import { ClientsPermissions } from '../../shared/constants/permissions/clients-permissions';
 
 const routes: Routes = [
   {
@@ -12,6 +13,16 @@ const routes: Routes = [
     component: AuthComponent,
     children: [
       { path: '', loadChildren: () => import('../../pages/dashboard/dashboard.module').then(m => m.DashboardModule) },
+      {
+        path: 'clients',
+        loadChildren: () => import('../../pages/clients/clients.module').then(m => m.ClientsModule),
+        data: {
+          permissions: {
+            only: ClientsPermissions.READ_ALL,
+            redirectTo: '/',
+          },
+        },
+      },
       {
         path: 'locations',
         loadChildren: () => import('../../pages/locations/locations.module').then(m => m.LocationsModule),
